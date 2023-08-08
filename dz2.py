@@ -84,27 +84,22 @@ while 2 ** i <= N:
 Каждое число – среднесуточная температура в
 соответствующий день. Температуры – целые числа и лежат в
 диапазоне от –50 до 5"""
-from random import randint
+N = int(input('Ко-во дней: '))
+local_max = 0
+global_max = 0
 
-# days = int(input('Введите кол-во дней: '))
-days = 10  # зададим для отладки
-today_temp = randint(-3, 3)
-warm_days_counter = 0
-warm_days_max = 0
-
-print(f'Температура: ', end="")
-
-for i in range(0, days):
-
-    today_temp += randint(-3, 3)
-    print(today_temp, end=" ")
-
-    if today_temp > 0:
-        warm_days_counter += 1
+# ГДЕ ОШИБКА?
+for _ in range(N):
+    x = int(input('Темпрература: '))
+    print(x)
+    if x > 0:
+        local_max += 1
     else:
-        warm_days_counter = 0
-    if warm_days_counter > warm_days_max:
-        warm_days_max = warm_days_counter
+        if local_max > global_max:
+            global_max = local_max
+        local_max = 0
+if local_max > global_max:
+    global_max = local_max
 
-print()
-print(f'Самая длинная оттепель -> {warm_days_max} д.')
+
+print(f'Ко-во дней = {global_max}')
